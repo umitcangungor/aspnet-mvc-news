@@ -1,4 +1,8 @@
 using App.Data;
+using App.Data.Abstract;
+using App.Data.Concrete;
+using App.Service.Abstract;
+using App.Service.Concrete;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddTransient(typeof(IService<>), typeof(Service<>));
+builder.Services.AddTransient<INewsRepository, NewsRepository>();
+builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+
+
+
 
 var app = builder.Build();
 

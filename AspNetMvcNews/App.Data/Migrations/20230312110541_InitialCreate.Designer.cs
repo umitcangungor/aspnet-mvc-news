@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230307195743_SeedData")]
-    partial class SeedData
+    [Migration("20230312110541_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,10 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Son Dakika"
+                            CreatedAt = new DateTime(2023, 3, 12, 14, 5, 41, 212, DateTimeKind.Local).AddTicks(9680),
+                            DeletedAt = new DateTime(2023, 3, 12, 14, 5, 41, 212, DateTimeKind.Local).AddTicks(9692),
+                            Name = "Son Dakika",
+                            UpdatedAt = new DateTime(2023, 3, 12, 14, 5, 41, 212, DateTimeKind.Local).AddTicks(9692)
                         });
                 });
 
@@ -99,6 +102,9 @@ namespace App.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -121,6 +127,8 @@ namespace App.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("News");
                 });
@@ -241,6 +249,40 @@ namespace App.Data.Migrations
                     b.ToTable("Settings");
                 });
 
+            modelBuilder.Entity("App.Data.Entities.Slider", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sliders");
+                });
+
             modelBuilder.Entity("App.Data.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -285,10 +327,29 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(2023, 3, 12, 14, 5, 41, 212, DateTimeKind.Local).AddTicks(9817),
+                            DeletedAt = new DateTime(2023, 3, 12, 14, 5, 41, 212, DateTimeKind.Local).AddTicks(9818),
                             Email = "Admin@admin.com",
                             Name = "Admin",
-                            Password = "1234"
+                            Password = "1234",
+                            UpdatedAt = new DateTime(2023, 3, 12, 14, 5, 41, 212, DateTimeKind.Local).AddTicks(9817)
                         });
+                });
+
+            modelBuilder.Entity("App.Data.Entities.News", b =>
+                {
+                    b.HasOne("App.Data.Entities.Category", "Category")
+                        .WithMany("News")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("App.Data.Entities.Category", b =>
+                {
+                    b.Navigation("News");
                 });
 #pragma warning restore 612, 618
         }

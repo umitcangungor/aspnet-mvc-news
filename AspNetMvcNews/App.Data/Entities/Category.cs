@@ -13,5 +13,8 @@ namespace App.Data.Entities
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;    
         public DateTime? DeletedAt { get; set; } = DateTime.Now;
+
+        [Display(Name ="Haberler")]    
+        public virtual ICollection<News>? News { get; set; }
     }
 }

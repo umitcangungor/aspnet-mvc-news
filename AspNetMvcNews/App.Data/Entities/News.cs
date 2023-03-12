@@ -11,6 +11,11 @@ namespace App.Data.Entities
         [Display(Name = "Haber İçeriği")]
         public string Content { get; set; }
 
+        [Display(Name = "Kategori")]
+        public int CategoryId { get; set; }
+        [Display(Name = "Kategori")]
+        public Category? Category { get; set; }
+
 
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
