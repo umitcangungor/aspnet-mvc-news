@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetMvcNews", "AspNetMvcN
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Web.Mvc", "App.Web.Mvc\App.Web.Mvc.csproj", "{F3841AFE-BE92-457D-84CD-2962637B273A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Data", "App.Data\App.Data.csproj", "{27B2CF00-30AB-48D0-BD8C-3447D38E2C3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Data", "App.Data\App.Data.csproj", "{27B2CF00-30AB-48D0-BD8C-3447D38E2C3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
