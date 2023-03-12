@@ -9,12 +9,6 @@
                         <h5 class="breaking-news-title">Breaking news</h5>
                         <div id="breakingNewsTicker" class="ticker" style="height: 24px;">
                             <ul>
-
-
-
-
-
-
                                 <li class="tickerHook" style="top: 0.374533px; left: 0px; position: absolute; display: block; opacity: 0.992197; z-index: 99;"><a href="#">Brexit breakthrough in Bweek of drama</a></li>
                                 <li class="" style="top: -3em; left: 0px; position: absolute; display: block; opacity: 0; z-index: 98;"><a href="#">Brexit bssels comes after week of drama</a></li>
                                 <li class="" style="top: -3em; left: 0px; position: absolute; display: block; opacity: 0; z-index: 98;"><a href="#">Brexit breakthrough in Brussels comes after week of drama</a></li>
@@ -134,7 +128,7 @@
                 <!-- Logo Area -->
                 <div class="col-12 col-md-4">
                     <div class="logo-area">
-                        <a href="index.html"><img src="/template/img/core-img/logo.png" alt="logo"></a>
+                        <a href="/"><img src="/template/img/core-img/logo.png" alt="logo"></a>
                     </div>
                 </div>
                 <!-- Header Advert Area -->
@@ -156,37 +150,7 @@
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#gazetteMenu" aria-controls="gazetteMenu" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i> Menu</button>
                             <div class="collapse navbar-collapse" id="gazetteMenu">
                                 <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="#">Today <span class="sr-only">(current)</span></a>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a>
-                                            <a class="dropdown-item" href="catagory.html">Catagory</a>
-                                            <a class="dropdown-item" href="single-post.html">Single Post</a>
-                                            <a class="dropdown-item" href="about-us.html">About Us</a>
-                                            <a class="dropdown-item" href="contact.html">Contact</a>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Politics</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Lifestyle</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Travel</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Health</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Entertainment</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">sport</a>
-                                    </li>
+                                   @await Component.InvokeAsync("Categories")
                                 </ul>
                                 <!-- Search Form -->
                                 <div class="header-search-form mr-auto">
@@ -207,3 +171,5 @@
         </div>
     </div>
 </header>
+
+<partial name="_Slider" />

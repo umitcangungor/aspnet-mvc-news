@@ -17,6 +17,7 @@ namespace App.Data
         public DbSet<Page> Pages { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
