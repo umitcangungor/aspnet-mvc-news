@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -36,6 +37,12 @@
 
 	<!-- Responsive CSS -->
 	<link href="/corona-free-dark-bootstrap-admin-template-master/template/css/responsive.css" rel="stylesheet">
+
+	<style>
+		.form-control{
+			background-color:aliceblue; color:black;
+		}
+	</style>
 </head>
 <body>
 	<div class="container-scroller">
@@ -126,19 +133,19 @@
 				</li>
 				
 				<li class="nav-item menu-items">
-					<a class="nav-link" href="pages/forms/basic_elements.html">
+					<a class="nav-link" asp-controller="News" asp-action="Index">
 						<span class="menu-icon">
 							<i class="mdi mdi-playlist-play"></i>
 						</span>
-						<span class="menu-title">Form Elements</span>
+						<span class="menu-title">Haber Yönetimi</span>
 					</a>
 				</li>
 				<li class="nav-item menu-items">
-					<a class="nav-link" href="pages/tables/basic-table.html">
+					<a class="nav-link" asp-controller="NewsImage" asp-action="Index">
 						<span class="menu-icon">
 							<i class="mdi mdi-table-large"></i>
 						</span>
-						<span class="menu-title">Tables</span>
+						<span class="menu-title">Haber Resim Yönetimi</span>
 					</a>
 				</li>
 				<li class="nav-item menu-items">
