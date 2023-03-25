@@ -1,8 +1,10 @@
 ﻿using App.Data.Entities;
 using App.Service.Abstract;
+using App.Web.Mvc.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Drawing.Drawing2D;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
@@ -45,17 +47,21 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         // POST: NewsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync(News news)
+        public async Task<ActionResult> Create(News news, IFormFile? Image)
         {
-            try
+            if (ModelState.IsValid)
             {
-                await _service.AddAsync(news);
-                await _service.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                ModelState.AddModelError("", "Hata Oluştu!");
+                try
+                {
+                    if (Image is not null) news.ImagePath = await FileHelper.FileLoaderAsync(Image, filePath: "/wwwroot/img/NewsImage/");
+                    await _service.AddAsync(news);
+                    await _service.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Hata Oluştu!");
+                }
             }
             ViewBag.CategoryId = new SelectList(await _serviceCategory.GetAllAsync(), "Id", "Name");
             return View(news);
@@ -72,13 +78,13 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         // POST: NewsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync(News news, int id)
+        public async Task<ActionResult> EditAsync(News news, int id, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-
+                    if (Image is not null) news.ImagePath = await FileHelper.FileLoaderAsync(Image, filePath: "/wwwroot/img/NewsImage/");
                     _service.Update(news);
                     await _service.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -106,6 +112,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         {
             try
             {
+                FileHelper.FileRemover(news.ImagePath, filePath: "/wwwroot/img/NewsImage/");
                 _service.Delete(news);
                 _service.SaveChanges();
                 return RedirectToAction(nameof(Index));

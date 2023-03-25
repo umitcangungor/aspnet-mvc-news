@@ -4,6 +4,7 @@ using App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230325123606_NewsImageDeleted")]
+    partial class NewsImageDeleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,10 +59,10 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(194),
-                            DeletedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(235),
+                            CreatedAt = new DateTime(2023, 3, 25, 15, 36, 6, 357, DateTimeKind.Local).AddTicks(4250),
+                            DeletedAt = new DateTime(2023, 3, 25, 15, 36, 6, 357, DateTimeKind.Local).AddTicks(4270),
                             Name = "Son Dakika",
-                            UpdatedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(234)
+                            UpdatedAt = new DateTime(2023, 3, 25, 15, 36, 6, 357, DateTimeKind.Local).AddTicks(4269)
                         });
                 });
 
@@ -113,6 +116,7 @@ namespace App.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ImagePath")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -307,12 +311,12 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(757),
-                            DeletedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(759),
+                            CreatedAt = new DateTime(2023, 3, 25, 15, 36, 6, 357, DateTimeKind.Local).AddTicks(4682),
+                            DeletedAt = new DateTime(2023, 3, 25, 15, 36, 6, 357, DateTimeKind.Local).AddTicks(4685),
                             Email = "Admin@admin.com",
                             Name = "Admin",
                             Password = "1234",
-                            UpdatedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(758)
+                            UpdatedAt = new DateTime(2023, 3, 25, 15, 36, 6, 357, DateTimeKind.Local).AddTicks(4684)
                         });
                 });
 

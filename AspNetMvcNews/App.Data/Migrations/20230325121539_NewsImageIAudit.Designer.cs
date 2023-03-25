@@ -4,6 +4,7 @@ using App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230325121539_NewsImageIAudit")]
+    partial class NewsImageIAudit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,10 +59,10 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(194),
-                            DeletedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(235),
+                            CreatedAt = new DateTime(2023, 3, 25, 15, 15, 39, 206, DateTimeKind.Local).AddTicks(561),
+                            DeletedAt = new DateTime(2023, 3, 25, 15, 15, 39, 206, DateTimeKind.Local).AddTicks(574),
                             Name = "Son Dakika",
-                            UpdatedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(234)
+                            UpdatedAt = new DateTime(2023, 3, 25, 15, 15, 39, 206, DateTimeKind.Local).AddTicks(573)
                         });
                 });
 
@@ -112,10 +115,6 @@ namespace App.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImagePath")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -167,6 +166,36 @@ namespace App.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NewsComments");
+                });
+
+            modelBuilder.Entity("App.Data.Entities.NewsImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("NewsId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NewsImages");
                 });
 
             modelBuilder.Entity("App.Data.Entities.Page", b =>
@@ -307,12 +336,12 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(757),
-                            DeletedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(759),
+                            CreatedAt = new DateTime(2023, 3, 25, 15, 15, 39, 206, DateTimeKind.Local).AddTicks(767),
+                            DeletedAt = new DateTime(2023, 3, 25, 15, 15, 39, 206, DateTimeKind.Local).AddTicks(769),
                             Email = "Admin@admin.com",
                             Name = "Admin",
                             Password = "1234",
-                            UpdatedAt = new DateTime(2023, 3, 25, 15, 43, 31, 958, DateTimeKind.Local).AddTicks(758)
+                            UpdatedAt = new DateTime(2023, 3, 25, 15, 15, 39, 206, DateTimeKind.Local).AddTicks(768)
                         });
                 });
 

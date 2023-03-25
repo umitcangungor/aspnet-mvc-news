@@ -2,7 +2,7 @@
 {
     public class FileHelper
     {
-        public static async Task<string> FileLoaderAsync(IFormFile formFile, string filePath = "/wwwroot/Img/")
+        public static async Task<string> FileLoaderAsync(IFormFile formFile, string filePath = "/wwwroot/img/")
         {
             var fileName = "";
 
@@ -19,7 +19,7 @@
 
 
 
-        public static bool FileRemover(string fileName, string filePath = "/wwwroot/Img/")
+        public static bool FileRemover(string fileName, string filePath = "/wwwroot/img/")
         {
             string directory = Directory.GetCurrentDirectory() + filePath + fileName;
 

@@ -6,9 +6,9 @@ namespace App.Data.Entities
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        [ StringLength(200)]
+        [StringLength(200)]
         public string Name { get; set; }
-        [ StringLength(400)]
+        [StringLength(400)]
         public string Value { get; set; }
     }
 }

@@ -13,7 +13,6 @@ namespace App.Data
         public DbSet<CategoryNews> CategorNews { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<NewsComment> NewsComments { get; set; }
-        public DbSet<NewsImage> NewsImages { get; set; }
         public DbSet<Page> Pages { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<User> Users { get; set; }

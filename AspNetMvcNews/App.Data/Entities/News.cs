@@ -16,6 +16,8 @@ namespace App.Data.Entities
         [Display(Name = "Kategori")]
         public Category? Category { get; set; }
 
+        [Display(Name = "Resim Yolu"), StringLength(200)]
+        public string? ImagePath { get; set; }
 
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
