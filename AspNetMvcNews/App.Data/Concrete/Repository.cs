@@ -13,7 +13,6 @@ namespace App.Data.Concrete
 {
     public class Repository<T> : IRepository<T> where T : class, IAuiditEntity, new()
     {
-
         protected AppDbContext context;
         protected DbSet<T> dbSet;
         public Repository(AppDbContext _context)

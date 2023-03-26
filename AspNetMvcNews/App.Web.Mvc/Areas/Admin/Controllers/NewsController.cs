@@ -22,7 +22,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 
         // GET: NewsController
 
-        public async Task<ActionResult> IndexAsync()
+        public async Task<ActionResult> Index()
         {
 
             var model = await _service.GetAllAsync();
@@ -78,7 +78,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         // POST: NewsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync(News news, int id, IFormFile? Image)
+        public async Task<ActionResult> Edit(News news, int id, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {

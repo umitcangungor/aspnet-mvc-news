@@ -1,4 +1,6 @@
 ﻿using App.Data;
+using App.Data.Entities;
+using App.Service.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,18 +8,19 @@ namespace App.Web.Mvc.ViewComponents
 {
 	public class Categories : ViewComponent
     {
-        private readonly AppDbContext _db;
+        private readonly IService<Category> _service;
 
-        public Categories(AppDbContext db)
+        public Categories(IService<Category> service)
         {
-            _db = db;
+            _service = service;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View(await _db.Categories.ToListAsync());
+            //var model = await _service.GetAllAsync();
+            return View(await _service.GetAllAsync());
         }
 
-       
+
     }
 }

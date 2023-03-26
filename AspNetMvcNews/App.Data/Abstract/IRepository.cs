@@ -18,6 +18,7 @@ namespace App.Data.Abstract
         void Update(T entity);
         void Delete(T entity);
         int SaveChanges();
+
         // Asenkron metotlar
         Task<T> FindAsync(int id);
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> expression);

@@ -21,6 +21,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         public async Task<ActionResult> Index()
         {
             var model = await _service.GetAllAsync();
+
             return View(model);
         }
 
@@ -31,9 +32,9 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         }
 
         // GET: CategoriesController/Create
-        public ActionResult Create()
-        {           
-            return View();        
+        public async Task<ActionResult> Create()
+        {
+            return View();
         }
 
         // POST: CategoriesController/Create
@@ -45,7 +46,6 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
             {
                 try
                 {
-
                     await _service.AddAsync(category);
                     await _service.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -59,7 +59,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         }
 
         // GET: CategoriesController/Edit/5
-        public async Task<ActionResult> EditAsync(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             var model = await _service.FindAsync(id);
             return View(model);
@@ -68,13 +68,12 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         // POST: CategoriesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync(int id, Category category)
+        public async Task<ActionResult> Edit(int id, Category category)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 try
                 {
-                    
                     _service.Update(category);
                     await _service.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -84,12 +83,11 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Hata Oluştu!");
                 }
             }
-            
             return View(category);
         }
 
         // GET: CategoriesController/Delete/5
-        public async Task<ActionResult> DeleteAsync(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             var model = await _service.FindAsync(id);
             return View(model);
@@ -101,7 +99,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         public ActionResult Delete(int id, Category category)
         {
             try
-            {               
+            {
                 _service.Delete(category);
                 _service.SaveChanges();
                 return RedirectToAction(nameof(Index));
