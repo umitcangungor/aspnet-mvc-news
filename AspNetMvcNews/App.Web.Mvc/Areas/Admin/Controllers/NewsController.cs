@@ -13,19 +13,20 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
     {
         private readonly IService<News> _service;
         private readonly IService<Category> _serviceCategory;
+        private readonly INewsService _newsService;
 
-        public NewsController(IService<News> service, IService<Category> serviceCategory)
+        public NewsController(IService<News> service, IService<Category> serviceCategory, INewsService newsService)
         {
             _service = service;
             _serviceCategory = serviceCategory;
+            _newsService = newsService;
         }
 
         // GET: NewsController
 
         public async Task<ActionResult> Index()
         {
-
-            var model = await _service.GetAllAsync();
+            var model = await _newsService.GetAllNewsByCategoriesAsync();
             return View(model);
         }
 
@@ -47,13 +48,13 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         // POST: NewsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(News news, IFormFile? Image)
+        public async Task<ActionResult> Create(News news, IFormFile? ImagePath)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if (Image is not null) news.ImagePath = await FileHelper.FileLoaderAsync(Image, filePath: "/wwwroot/img/NewsImage/");
+                    if (ImagePath is not null) news.ImagePath = await FileHelper.FileLoaderAsync(ImagePath);
                     await _service.AddAsync(news);
                     await _service.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
