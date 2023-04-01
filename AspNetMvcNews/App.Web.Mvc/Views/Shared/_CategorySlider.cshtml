@@ -24,9 +24,9 @@
 										<div class="editorial-post-content">
 											<!-- Post Tag -->
 											<div class="gazette-post-tag">
-												<a href="#">@item.Category.Name</a>
+												<a href="/Category/Index/@item.Category.Id">@item.Category.Name</a>
 											</div>
-											<h2><a href="#" class="font-pt mb-15">@item.Title</a></h2>
+											<h2><a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" class="font-pt mb-15">@item.Title</a></h2>
 											<p class="editorial-post-date mb-15">@item.CreatedAt</p>
 											<p>@item.Content</p>
 										</div>
