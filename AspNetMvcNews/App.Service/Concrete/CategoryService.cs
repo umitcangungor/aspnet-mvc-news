@@ -4,10 +4,10 @@ using App.Service.Abstract;
 
 namespace App.Service.Concrete
 {
-    public class CategoryService : CategoryRepository, ICategoryService
-    {
-        public CategoryService(AppDbContext _context) : base(_context)
-        {
-        }
-    }
+	public class CategoryService : CategoryRepository, ICategoryService
+	{
+		public CategoryService(AppDbContext _context) : base(_context)
+		{
+		}
+	}
 }

@@ -22,7 +22,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
 
         // GET: NewsController
 
-        public async Task<ActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             var model = await _newsService.GetAllNewsByCategoriesAsync();
             return View(model);
@@ -67,7 +67,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         }
 
         // GET: NewsController/Edit/5
-        public async Task<ActionResult> EditAsync(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             var model = await _service.FindAsync(id);
             ViewBag.CategoryId = new SelectList(await _serviceCategory.GetAllAsync(), "Id", "Name");
@@ -77,13 +77,13 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         // POST: NewsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(News news, int id, IFormFile? Image)
+        public async Task<ActionResult> Edit(News news, int id, IFormFile? ImagePath)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if (Image is not null) news.ImagePath = await FileHelper.FileLoaderAsync(Image, filePath: "/wwwroot/img/NewsImage/");
+                    if (ImagePath is not null) news.ImagePath = await FileHelper.FileLoaderAsync(ImagePath);
                     _service.Update(news);
                     await _service.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -112,7 +112,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         {
             try
             {
-                FileHelper.FileRemover(news.ImagePath, filePath: "/wwwroot/img/NewsImage/");
+                FileHelper.FileRemover(news.ImagePath);
                 _service.Delete(news);
                 _service.SaveChanges();
                 return RedirectToAction(nameof(Index));

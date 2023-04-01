@@ -10,7 +10,5 @@ namespace App.Service.Concrete
         public Service(AppDbContext _context) : base(_context)
         {
         }
-
-
     }
 }

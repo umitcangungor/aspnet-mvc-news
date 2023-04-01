@@ -2,7 +2,7 @@
 
 namespace App.Service.Abstract
 {
-    public interface ICategoryService : ICategoryRepository
-    {
-    }
+	public interface ICategoryService : ICategoryRepository
+	{
+	}
 }
