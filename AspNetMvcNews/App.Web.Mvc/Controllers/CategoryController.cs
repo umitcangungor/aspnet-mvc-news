@@ -11,7 +11,6 @@ namespace App.Web.Mvc.Controllers
 		{
 			_service = service;
 		}
-		[Route("/category/category-slug")]
 		public async Task<IActionResult> Index(int id)
 		{
 			var model = await _service.GetCategoryByNews(id);

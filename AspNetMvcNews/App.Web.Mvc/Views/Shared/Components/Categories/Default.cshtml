@@ -1,31 +1,31 @@
-﻿@model  IEnumerable<Category>
+﻿@model IEnumerable<Category>
 
 <li class="nav-item active">
-    <a class="nav-link" asp-action="Today" asp-controller="Home">Bugün <span class="sr-only">(current)</span></a>
-    
+	<a class="nav-link" asp-action="Today" asp-controller="Home">Bugün <span class="sr-only">(current)</span></a>
+
 </li>
 <li class="nav-item">
-    <a asp-controller="Home" asp-action="Index" class="nav-link">Anasayfa</a>
+	<a asp-controller="Home" asp-action="Index" class="nav-link">Anasayfa</a>
 </li>
 <li class="nav-item">
-    <a asp-controller="Home" asp-action="AboutUs" class="nav-link">Hakkımızda</a>
+	<a asp-controller="Home" asp-action="AboutUs" class="nav-link">Hakkımızda</a>
 </li>
 <li class="nav-item">
-    <a asp-controller="Home" asp-action="Contact" class="nav-link">İletişim</a>
+	<a asp-controller="Home" asp-action="Contact" class="nav-link">İletişim</a>
 </li>
 
-<li class="nav-item dropdown">
-    <a asp-controller="Category" asp-action="Index" class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategoriler</a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        @foreach (var item in Model)
-        {
-            <a class="dropdown-item" href="/category/category-slug/@item.Id">@item.Name</a>
-
-        }
-       
-        
-    </div>
-</li>
+@foreach (var anaKategori in Model.Where(c => c.IsActive && c.ParentId == 0 && c.IsTopMenu).OrderBy(c => c.OrderNo))
+{
+	<li class="nav-item dropdown">
+		<a href="/category/category-slug/@anaKategori.Id" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@anaKategori.Name</a>
+		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			@foreach (var altKategori in Model.Where(c => c.IsActive && c.ParentId == anaKategori.Id && c.IsTopMenu).OrderBy(c => c.OrderNo))
+			{
+				<a class="dropdown-item" href="/Category/Index/@altKategori.Id">@altKategori.Name</a>
+			}
+		</div>
+	</li>
+}
 
 
 

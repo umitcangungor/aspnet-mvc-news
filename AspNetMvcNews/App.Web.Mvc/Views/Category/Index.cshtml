@@ -1,5 +1,25 @@
-﻿
+﻿@model Category
 @{
-    ViewData["Title"] = "Kategorideki Haberler";
+	ViewData["Title"] = Model.Name;
 }
+
+<!-- Breadcumb Area Start -->
+<div class="breadcumb-area section_padding_50">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="breacumb-content d-flex align-items-center justify-content-between">
+					<!-- Post Tag -->
+					<div class="gazette-post-tag">
+						<a asp-controller="News" asp-action="Detail" asp-route-id="@Model.Id">@Model.Name</a>
+					</div>
+					<p class="editorial-post-date text-dark mb-0">@Model.CreatedAt</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Breadcumb Area End -->
+
+<partial name="_News" model="Model.News" />
 

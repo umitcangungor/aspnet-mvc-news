@@ -1,0 +1,43 @@
+﻿@model IEnumerable<News>
+@{
+	ViewData["Title"] = "Haber";
+}
+
+<section class="gazatte-editorial-area section_padding_100 bg-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="editorial-post-slides owl-carousel owl-theme owl-loaded">
+
+					@foreach (var item in Model)
+					{
+						<!-- Editorial Post Single Slide -->
+						<div class="owl-item">
+							<div class="editorial-post-single-slide">
+								<div class="row">
+									<div class="col-12 col-md-5">
+										<div class="editorial-post-thumb">
+											<img src="/Img/@item.ImagePath" alt="">
+										</div>
+									</div>
+									<div class="col-12 col-md-7">
+										<div class="editorial-post-content">
+											<!-- Post Tag -->
+											<div class="gazette-post-tag">
+												<a href="#">@item.Category.Name</a>
+											</div>
+											<h2><a href="#" class="font-pt mb-15">@item.Title</a></h2>
+											<p class="editorial-post-date mb-15">@item.CreatedAt</p>
+											<p>@item.Content</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
