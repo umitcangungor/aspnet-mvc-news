@@ -29,7 +29,26 @@
                 <label asp-for="ImagePath" class="control-label"></label>
                 <input asp-for="ImagePath" class="form-control" type="file" />
                 <span asp-validation-for="ImagePath" class="text-danger"></span>
-                <img src="/img/NewsImage/@Model.ImagePath" alt="" height="50" />
+                @if (!string.IsNullOrWhiteSpace(Model.ImagePath))
+                {
+
+                    <label class="my-3">
+                        <a href="/img/NewsImage/@Model.ImagePath" data-toggle="lightbox">
+                            <img src="/Img/Products/@Model.ImagePath" alt="@Model.ImagePath" title="@Model.ImagePath" height="50" />
+                        </a>
+                        @Html.CheckBox("resmiSil") Resmi Sil
+                    </label>
+                }
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsHome" /> @Html.DisplayNameFor(model => model.IsHome)
+                </label>
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>

@@ -34,6 +34,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         // GET: CategoriesController/Create
         public async Task<ActionResult> Create()
         {
+            ViewBag.ParentId = new SelectList(await _service.GetAllAsync(), "Id", "Name");
             return View();
         }
 
@@ -55,12 +56,35 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Hata Oluştu!");
                 }
             }
+            ViewBag.ParentId = new SelectList(await _service.GetAllAsync(), "Id", "Name");
+            return View(category);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create2(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _service.AddAsync(category);
+                    await _service.SaveChangesAsync();
+                    return RedirectToAction("Create", "Products");
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Hata Oluştu!");
+                }
+            }
+            ViewBag.ParentId = new SelectList(await _service.GetAllAsync(), "Id", "Name");
             return View(category);
         }
 
         // GET: CategoriesController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
+            ViewBag.ParentId = new SelectList(await _service.GetAllAsync(), "Id", "Name");
             var model = await _service.FindAsync(id);
             return View(model);
         }
@@ -83,6 +107,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Hata Oluştu!");
                 }
             }
+            ViewBag.ParentId = new SelectList(await _service.GetAllAsync(), "Id", "Name");
             return View(category);
         }
 

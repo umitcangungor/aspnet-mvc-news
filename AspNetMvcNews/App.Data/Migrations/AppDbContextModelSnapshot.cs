@@ -37,13 +37,24 @@ namespace App.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTopMenu")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("OrderNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ParentId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -56,39 +67,15 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 3, 26, 12, 35, 7, 277, DateTimeKind.Local).AddTicks(2933),
-                            DeletedAt = new DateTime(2023, 3, 26, 12, 35, 7, 277, DateTimeKind.Local).AddTicks(2948),
+                            CreatedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(1619),
+                            DeletedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(1634),
+                            IsActive = false,
+                            IsTopMenu = false,
                             Name = "Son Dakika",
-                            UpdatedAt = new DateTime(2023, 3, 26, 12, 35, 7, 277, DateTimeKind.Local).AddTicks(2946)
+                            OrderNo = 0,
+                            ParentId = 0,
+                            UpdatedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(1633)
                         });
-                });
-
-            modelBuilder.Entity("App.Data.Entities.CategoryNews", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("NewsId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CategoryNews");
                 });
 
             modelBuilder.Entity("App.Data.Entities.News", b =>
@@ -103,7 +90,6 @@ namespace App.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -116,16 +102,19 @@ namespace App.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsHome")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -167,40 +156,6 @@ namespace App.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NewsComments");
-                });
-
-            modelBuilder.Entity("App.Data.Entities.Page", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Pages");
                 });
 
             modelBuilder.Entity("App.Data.Entities.Setting", b =>
@@ -307,12 +262,12 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 3, 26, 12, 35, 7, 277, DateTimeKind.Local).AddTicks(3347),
-                            DeletedAt = new DateTime(2023, 3, 26, 12, 35, 7, 277, DateTimeKind.Local).AddTicks(3350),
+                            CreatedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(2037),
+                            DeletedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(2039),
                             Email = "Admin@admin.com",
                             Name = "Admin",
                             Password = "1234",
-                            UpdatedAt = new DateTime(2023, 3, 26, 12, 35, 7, 277, DateTimeKind.Local).AddTicks(3349)
+                            UpdatedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(2039)
                         });
                 });
 

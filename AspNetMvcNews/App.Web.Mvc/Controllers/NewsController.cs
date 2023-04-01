@@ -1,18 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using App.Service.Abstract;
+using App.Service.Concrete;
+using App.Web.Mvc.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace App.Web.Mvc.Controllers
 {
     public class NewsController : Controller
     {
-        public IActionResult Index()
+        private readonly INewsService _newsService;
+
+		public NewsController(INewsService newsService)
+		{
+			_newsService = newsService;
+		}
+
+		public async Task<IActionResult> Index()
         {
-            return View();
-        }
+			var model = await _newsService.GetAllAsync(p => p.IsActive);
+			return View(model);
+		}
 
         [Route("/news/title-slug")]
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            return View();
-        }
+			var news = await _newsService.GetNewsByCategoriesAsync(id);
+			var model = new NewsDetailViewModel()
+			{
+				News = news,
+				NewsList = await _newsService.GetAllAsync(p => p.CategoryId == news.CategoryId && p.Id != id)
+			};
+			return View(model);
+		}
     }
 }

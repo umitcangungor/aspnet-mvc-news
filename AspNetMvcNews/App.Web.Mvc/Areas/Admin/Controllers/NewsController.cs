@@ -1,10 +1,8 @@
 ﻿using App.Data.Entities;
 using App.Service.Abstract;
 using App.Web.Mvc.Utils;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Drawing.Drawing2D;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
@@ -100,9 +98,10 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
         }
 
         // GET: NewsController/Delete/5
-        public async Task<ActionResult> DeleteAsync(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var model = await _service.FindAsync(id);
+			ViewBag.CategoryId = new SelectList(await _serviceCategory.GetAllAsync(), "Id", "Name");
+			var model = await _service.FindAsync(id);
             return View(model);
         }
 
