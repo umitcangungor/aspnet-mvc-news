@@ -16,7 +16,7 @@
 							<a href="/Category/Index/@item.Category.Id">@item.Category.Name</a>
 						</div>
 						<h2 class="font-pt"><a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id">@item.Title</a></h2>
-						<p class="gazette-post-date">@item.CreatedAt</p>
+						<p class="gazette-post-date">@String.Format("{0: dd MMMM yyyy}", item.CreatedAt)</p>
 						<!-- Post Thumbnail -->
 						<div class="blog-post-thumbnail my-5">
 							<img src="/Img/@item.ImagePath" alt="post-thumb">

@@ -16,7 +16,7 @@
 							<a href="#">@Model.News.Category.Name</a>
 						</div>
 						<h2 class="font-pt">@Model.News.Title</h2>
-						<p>@Model.News.CreatedAt</p>
+						<p>@String.Format("{0: dd MMMM yyyy}", Model.News.CreatedAt)</p>
 					</div>
 				</div>
 			</div>

@@ -27,7 +27,7 @@
 												<a href="/Category/Index/@item.Category.Id">@item.Category.Name</a>
 											</div>
 											<h2><a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" class="font-pt mb-15">@item.Title</a></h2>
-											<p class="editorial-post-date mb-15">@item.CreatedAt</p>
+											<p class="editorial-post-date mb-15">@String.Format("{0: dd MMMM yyyy}", item.CreatedAt)</p>
 											<p>@item.Content</p>
 										</div>
 									</div>

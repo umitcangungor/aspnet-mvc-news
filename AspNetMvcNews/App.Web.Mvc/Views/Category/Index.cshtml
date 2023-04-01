@@ -13,7 +13,7 @@
 					<div class="gazette-post-tag">
 						<a asp-controller="News" asp-action="Detail" asp-route-id="@Model.Id">@Model.Name</a>
 					</div>
-					<p class="editorial-post-date text-dark mb-0">@Model.CreatedAt</p>
+					<p class="editorial-post-date text-dark mb-0">@String.Format("{0: dd MMMM yyyy}", Model.CreatedAt)</p>
 				</div>
 			</div>
 		</div>
