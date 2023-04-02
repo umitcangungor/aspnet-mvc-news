@@ -12,6 +12,7 @@
 			@if (Model.NewsList.Any())
 			{
 				var latestNews = Model.NewsList.OrderByDescending(n => n.CreatedAt).FirstOrDefault();
+
 				<div class="col-12 col-lg-9">
 					<!-- Gazette Welcome Post -->
 					<div class="gazette-welcome-post">
@@ -52,9 +53,9 @@
 						@if (Model.NewsList.Any())
 						{
 							var flashaber = Model.NewsList.Where(n => n.Category.Name == "Flaş Haber").OrderByDescending(n => n.CreatedAt).Take(2);
+
 							@foreach (var item in flashaber)
 							{
-								
 								<!-- Single Breaking News Widget -->
 								<div class="single-breaking-news-widget">
 									<a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id"><img src="/Img/@item.ImagePath" alt=""></a>
