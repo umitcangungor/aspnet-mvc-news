@@ -20,7 +20,7 @@ namespace App.Web.Mvc.Controllers
             _categoryService = categoryService;
         }
 
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> Index()
         {
             var model = new HomePageViewModel()
             {
