@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control"  />
+                <textarea asp-for="Content" class="form-control" id="floatingTextarea2" style="height: 100px"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -33,8 +33,8 @@
                 {
 
                     <label class="my-3">
-                        <a href="/img/NewsImage/@Model.ImagePath" data-toggle="lightbox">
-                            <img src="/Img/Products/@Model.ImagePath" alt="@Model.ImagePath" title="@Model.ImagePath" height="50" />
+                        <a href="/Img/@Model.ImagePath" data-toggle="lightbox">
+                            <img src="/Img/@Model.ImagePath" alt="@Model.ImagePath" title="@Model.ImagePath" height="50" />
                         </a>
                         @Html.CheckBox("resmiSil") Resmi Sil
                     </label>

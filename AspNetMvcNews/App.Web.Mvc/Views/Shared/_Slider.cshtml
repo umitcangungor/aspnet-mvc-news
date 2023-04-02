@@ -1,78 +1,44 @@
-﻿<!-- Welcome Blog Slide Area Start -->
+﻿@model IEnumerable<News>
+
+
+<!-- Welcome Blog Slide Area Start -->
 <section class="welcome-blog-post-slide owl-carousel">
-    <!-- Single Blog Post -->
-    <div class="single-blog-post-slide bg-img background-overlay-5" style="background-image: url(/template/img/bg-img/1.jpg);">
-        <!-- Single Blog Post Content -->
-        <div class="single-blog-post-content">
-            <div class="tags">
-                <a href="#">crypto</a>
-            </div>
-            <h3><a href="#" class="font-pt">Crypto world goes mad</a></h3>
-            <div class="date">
-                <a href="#">March 29, 2018</a>
-            </div>
-        </div>
-    </div>
-    <!-- Single Blog Post -->
-    <div class="single-blog-post-slide bg-img background-overlay-5" style="background-image: url(/template/img/bg-img/2.jpg);">
-        <!-- Single Blog Post Content -->
-        <div class="single-blog-post-content">
-            <div class="tags">
-                <a href="#">live</a>
-            </div>
-            <h3><a href="#" class="font-pt">The latest news live</a></h3>
-            <div class="date">
-                <a href="#">March 29, 2018</a>
-            </div>
-        </div>
-    </div>
-    <!-- Single Blog Post -->
-    <div class="single-blog-post-slide bg-img background-overlay-5" style="background-image: url(/template/img/bg-img/3.jpg);">
-        <!-- Single Blog Post Content -->
-        <div class="single-blog-post-content">
-            <div class="tags">
-                <a href="#">politics</a>
-            </div>
-            <h3><a href="#" class="font-pt">Financial advices </a></h3>
-            <div class="date">
-                <a href="#">March 29, 2018</a>
-            </div>
-        </div>
-    </div>
-    <!-- Single Blog Post -->
-    <div class="single-blog-post-slide bg-img background-overlay-5" style="background-image: url(/template/img/bg-img/2.jpg);">
-        <!-- Single Blog Post Content -->
-        <div class="single-blog-post-content">
-            <div class="tags">
-                <a href="#">live</a>
-            </div>
-            <h3><a href="#" class="font-pt">The latest news live</a></h3>
-            <div class="date">
-                <a href="#">March 29, 2018</a>
-            </div>
-        </div>
-    </div>
+	@foreach (var item in Model)
+	{
+		<!-- Single Blog Post -->
+		<div class="single-blog-post-slide bg-img background-overlay-5" style="background-image: url(/Img/@item.ImagePath);">
+			<!-- Single Blog Post Content -->
+			<div class="single-blog-post-content">
+				<div class="tags">
+					<a href="/Category/Index/@item.Category.Id">@item.Category.Name</a>
+				</div>
+				<h3><a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" class="font-pt">@item.Title</a></h3>
+				<div class="date">
+					<a href="#">@String.Format("{0: dd MMMM yyyy}", item.CreatedAt)</a>
+				</div>
+			</div>
+		</div>
+	}
 </section>
 <!-- Welcome Blog Slide Area End -->
+
 <!-- Latest News Marquee Area Start -->
 <div class="latest-news-marquee-area">
-    <div class="simple-marquee-container">
-        <div class="marquee">
-            <ul class="marquee-content-items">
-                <li>
-                    <a href="#"><span class="latest-news-time">10:40</span> The Facebook Live stream that could presage TV</a>
-                </li>
-                <li>
-                    <a href="#"><span class="latest-news-time">11:02</span> Opinion: It's time to start talking about impeachment</a>
-                </li>
-                <li>
-                    <a href="#"><span class="latest-news-time">12:37</span> Clinton aims to shore up Wisconsin with new TV ads</a>
-                </li>
-                <li>
-                    <a href="#"><span class="latest-news-time">13:59</span> Trump signs tax bill before leaving for Mar-a-Lago</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+	<div class="simple-marquee-container">
+		<div class="marquee">
+			<ul class="marquee-content-items">
+				@foreach (var item in Model)
+				{
+					@if (item.Category.Name == "Son Dakika")
+					{
+						<li>
+							<a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id"><span class="latest-news-time">@String.Format("{0: HH:mm}", item.CreatedAt)</span> @item.Title</a>
+						</li>
+					}
+					
+				}
+			</ul>
+		</div>
+	</div>
 </div>
 <!-- Latest News Marquee Area End -->
