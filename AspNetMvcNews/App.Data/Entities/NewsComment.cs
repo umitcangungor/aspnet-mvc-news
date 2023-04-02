@@ -5,7 +5,7 @@ namespace App.Data.Entities
     public class NewsComment : IAuiditEntity
     {
         public int Id { get; set; }
-        public int PostId { get; set; }
+        public int PostId { get; set; } // NewsId
         public int UserId { get; set; }
         [Display(Name = "Yorum")]
         public string Comment { get; set; }

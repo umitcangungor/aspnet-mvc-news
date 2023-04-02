@@ -25,7 +25,7 @@ namespace App.Web.Mvc.Controllers
             var model = new HomePageViewModel()
             {
                 NewsList = await _service.GetAllAsync(p => p.IsHome),
-                Categories = await _categoryService.GetAllAsync()
+                Categories = await _categoryService.GetAllAsync(),
             };
             return View(model);
         }
