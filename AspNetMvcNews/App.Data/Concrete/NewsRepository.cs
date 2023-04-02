@@ -19,9 +19,5 @@ namespace App.Data.Concrete
 		{
 			return await context.News.Include(c => c.Category).AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
 		}
-        public async Task<News> GetLastNewsAsync(int id)
-        {
-            return await context.News.AsNoTracking().OrderBy(p => p.CreatedAt).LastOrDefaultAsync(p => p.Id == id);
-        }
     }
 }
