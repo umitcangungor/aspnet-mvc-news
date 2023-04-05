@@ -67,14 +67,14 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(1619),
-                            DeletedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(1634),
+                            CreatedAt = new DateTime(2023, 4, 5, 23, 1, 43, 584, DateTimeKind.Local).AddTicks(1445),
+                            DeletedAt = new DateTime(2023, 4, 5, 23, 1, 43, 584, DateTimeKind.Local).AddTicks(1455),
                             IsActive = false,
                             IsTopMenu = false,
                             Name = "Son Dakika",
                             OrderNo = 0,
                             ParentId = 0,
-                            UpdatedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(1633)
+                            UpdatedAt = new DateTime(2023, 4, 5, 23, 1, 43, 584, DateTimeKind.Local).AddTicks(1455)
                         });
                 });
 
@@ -262,12 +262,12 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(2037),
-                            DeletedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(2039),
+                            CreatedAt = new DateTime(2023, 4, 5, 23, 1, 43, 584, DateTimeKind.Local).AddTicks(1648),
+                            DeletedAt = new DateTime(2023, 4, 5, 23, 1, 43, 584, DateTimeKind.Local).AddTicks(1650),
                             Email = "Admin@admin.com",
                             Name = "Admin",
                             Password = "1234",
-                            UpdatedAt = new DateTime(2023, 4, 1, 14, 11, 25, 737, DateTimeKind.Local).AddTicks(2039)
+                            UpdatedAt = new DateTime(2023, 4, 5, 23, 1, 43, 584, DateTimeKind.Local).AddTicks(1649)
                         });
                 });
 
