@@ -12,12 +12,14 @@ namespace App.Web.Mvc.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IService<News> _service;
         private readonly IService<Category> _categoryService;
+        private readonly IService<Contact> _serviceContact;
 
-        public HomeController(ILogger<HomeController> logger, IService<News> service, IService<Category> categoryService)
+        public HomeController(ILogger<HomeController> logger, IService<News> service, IService<Category> categoryService, IService<Contact> serviceContact)
         {
             _logger = logger;
             _service = service;
             _categoryService = categoryService;
+            _serviceContact = serviceContact;
         }
 
         public async Task<IActionResult> Index()
@@ -35,8 +37,27 @@ namespace App.Web.Mvc.Controllers
             return View();
         }
 
+        [Route("Iletisim")]
         public IActionResult ContactUs()
         {
+            return View();
+        }
+        [Route("Iletisim"), HttpPost]
+        public async Task<IActionResult> ContactUs(Contact contact)
+        {
+            try
+            {
+                await _serviceContact.AddAsync(contact);
+                await _serviceContact.SaveChangesAsync();
+                TempData["Mesaj"] = "<div class = 'alert alert-success'>Mesajınız Gönderildi. Teşekkürler...</div>";
+                return RedirectToAction("ContactUs");
+            }
+            catch (Exception)
+            {
+
+                ModelState.AddModelError("", "Hata Oluştu! Mesajınız Gönderilemedi!");
+            }
+
             return View();
         }
 
