@@ -10,7 +10,7 @@
 	<a asp-controller="News" asp-action="Index" class="nav-link">Haberler</a>
 </li>
 <li class="nav-item">
-	<a asp-controller="Home" asp-action="Contact" class="nav-link">İletişim</a>
+	<a asp-controller="Home" asp-action="ContactUs" class="nav-link">İletişim</a>
 </li>
 
 @foreach (var anaKategori in Model.Where(c => c.IsActive && c.ParentId == 0 && c.IsTopMenu).OrderBy(c => c.OrderNo))

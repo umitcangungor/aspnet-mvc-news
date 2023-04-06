@@ -30,6 +30,16 @@ namespace App.Web.Mvc.Controllers
             return View(model);
         }
 
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
