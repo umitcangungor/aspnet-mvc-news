@@ -7,5 +7,5 @@ namespace App.Data.Abstract
 		Task<IEnumerable<News>> GetAllNewsByCategoriesAsync();
 		Task<News> GetNewsByCategoriesAsync(int id);
 
-    }
+	}
 }

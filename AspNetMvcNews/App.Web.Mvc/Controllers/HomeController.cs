@@ -37,7 +37,7 @@ namespace App.Web.Mvc.Controllers
             return View();
         }
 
-        [Route("Iletisim")]
+		[Route("Iletisim")]
         public IActionResult ContactUs()
         {
             return View();
