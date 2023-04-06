@@ -18,7 +18,7 @@ namespace App.Web.Mvc.Controllers
 
 		public async Task<IActionResult> Index()
         {
-			var model = await _service.GetAllNewsByCategoriesAsync(); // ?????
+			var model = await _service.GetAllNewsByCategoriesAsync();
 			return View(model);
 		}
 

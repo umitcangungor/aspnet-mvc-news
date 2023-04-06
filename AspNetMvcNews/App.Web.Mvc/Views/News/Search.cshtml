@@ -3,4 +3,17 @@
 	ViewData["Title"] = "Haberler";
 }
 
-<partial name="_News" model="Model.NewsList" />
+@if (Model.NewsList == null || Model.NewsList.Count == 0)
+{
+	<div class="container d-flex justify-content-center my-5">
+		<div class="row">
+			<h3><a href="#" class="font-pt mb-2">Aradığınız içerikte haber bulunamadı!</a></h3>
+		</div>
+	</div>
+}
+else
+{
+	<partial name="_News" model="Model.NewsList" />
+}
+
+

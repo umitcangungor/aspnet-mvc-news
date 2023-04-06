@@ -24,3 +24,12 @@ body {
     width: 255px;
     height: 300px;
 }
+.thumbnail-size {
+    height: 250px;
+}
+
+.thumbnail-size img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
