@@ -10,58 +10,15 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <!-- Navbar Search -->
-        <li class="nav-item">
-            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="fas fa-search"></i>
-            </a>
-            <div class="navbar-search-block">
-                <form class="form-inline">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">admin</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <form id="logoutForm" method="post" class="form-inline" asp-controller="Login" asp-action="Logout">
+                <li>
+                    <button type="submit" class="dropdown-item">Çıkış Yap</button>
+                </li>
                 </form>
-            </div>
-        </li>
-        <li class="nav-item dropdown user-menu">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <span class="d-none d-md-inline">Sedat Kurtuldu</span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-                <!-- User image -->
-                <li class="user-header bg-primary">
 
-                    <p>
-                        Sedat Kurtuldu - Web Developer
-                    </p>
-                </li>
-                <!-- Menu Body -->
-               @* <li class="user-body">
-                    <div class="row">
-                        <div class="col-4 text-center">
-                            <a href="#">Followers</a>
-                        </div>
-                        <div class="col-4 text-center">
-                            <a href="#">Sales</a>
-                        </div>
-                        <div class="col-4 text-center">
-                            <a href="#">Friends</a>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                </li>*@
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                    <a href="#" class="btn btn-default btn-flat float-center">Çıkış Yap</a>
-                </li>
             </ul>
         </li>
         <li class="nav-item">
@@ -83,16 +40,6 @@
         <div class="os-resize-observer-host observed"><div class="os-resize-observer" style="left: 0px; right: auto;"></div><div class="os-resize-observer"></div></div><div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 788px;"></div><div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 788px;"></div><div class="os-padding">
             <div class="os-viewport os-viewport-native-scrollbars-invisible" style="">
                 <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
-                    <div class="form-inline">
-                        <div class="input-group" data-widget="sidebar-search">
-                            <input class="form-control form-control-sidebar" type="search" placeholder="Ara" aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-sidebar">
-                                    <i class="fas fa-fw fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
 @*                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {*@
                         <!-- Sidebar Menu -->
@@ -110,7 +57,7 @@
                             </li>
                              <li class="nav-item">
                                 <a asp-controller="News" asp-action="Index" class="nav-link">
-                                    <i class="fa fa-folder-open nav-icon"></i>
+                                    <i class="fa fa-newspaper nav-icon"></i>
                                     <p>
                                         Haber Yönetimi
                                     </p>
@@ -118,7 +65,7 @@
                             </li>
                              <li class="nav-item">
                                 <a asp-controller="NewsComment" asp-action="Index" class="nav-link">
-                                    <i class="fas fa-bars nav-icon"></i>
+                                    <i class="fas fa-comment nav-icon"></i>
                                     <p>
                                         Haber Yorumları
                                     </p>
