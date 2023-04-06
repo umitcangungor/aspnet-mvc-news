@@ -20,7 +20,8 @@ namespace App.Data.Entities
         public int OrderNo { get; set; }
         [Display(Name = "Haberler")]
         public virtual ICollection<News>? News { get; set; }
-        public DateTime? CreatedAt { get; set; } = DateTime.Now;
+		[Display(Name = "Oluşturulma Tarihi")]
+		public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;    
         public DateTime? DeletedAt { get; set; } = DateTime.Now;
     }
