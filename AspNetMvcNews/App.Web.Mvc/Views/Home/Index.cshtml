@@ -27,7 +27,7 @@
 							<img src="/Img/@latestNews.ImagePath" alt="post-thumb">
 						</div>
 						<!-- Post Excerpt -->
-						<p>@latestNews.Content</p>
+						<p>@(latestNews.Content.ToString().Length > 70 ? latestNews.Content.ToString().Substring(0, 70) + "..." : latestNews.Content)</p>
 						<!-- Reading More -->
 						<div class="post-continue-reading-share d-sm-flex align-items-center justify-content-between mt-30">
 							<div class="post-continue-btn">

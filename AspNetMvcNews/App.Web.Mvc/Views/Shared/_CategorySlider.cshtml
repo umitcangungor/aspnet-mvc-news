@@ -28,7 +28,7 @@
 											</div>
 											<h2><a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" class="font-pt mb-15">@item.Title</a></h2>
 											<p class="editorial-post-date mb-15">@String.Format("{0: dd MMMM yyyy}", item.CreatedAt)</p>
-											<p>@item.Content</p>
+											<p>@(item.Content.ToString().Length > 40 ? item.Content.ToString().Substring(0, 40) + "..." : item.Content)</p>
 										</div>
 									</div>
 								</div>
