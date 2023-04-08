@@ -4,6 +4,7 @@ using App.Web.Mvc.Models;
 using App.Web.Mvc.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Xml;
 
 namespace App.Web.Mvc.Controllers
 {
@@ -31,8 +32,7 @@ namespace App.Web.Mvc.Controllers
             };
             return View(model);
         }
-
-        public IActionResult AboutUs()
+		public IActionResult AboutUs()
         {
             return View();
         }

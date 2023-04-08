@@ -1,57 +1,48 @@
-﻿@model IEnumerable<News>
+﻿@model IPagedList<News>
 @{
 	ViewData["Title"] = "Haberler";
 }
 
 <section class="catagory-welcome-post-area section_padding_100">
-	<div class="container">
-		<div class="row">
-			@foreach (var item in Model)
-			{
-				<div class="col-12 col-md-6">
-					<!-- Gazette Welcome Post -->
-					<div class="gazette-welcome-post">
-						<!-- Post Tag -->
-						<div class="gazette-post-tag">
-							<a href="/Category/Index/@item.Category.Id">@item.Category.Name</a>
-						</div>
-						<h2 class="font-pt"><a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id">@item.Title</a></h2>
-						<p class="gazette-post-date">@String.Format("{0: dd MMMM yyyy}", item.CreatedAt)</p>
-						<!-- Post Thumbnail -->
-						<div class="blog-post-thumbnail my-5 thumbnail-size">
-							<img src="/Img/@item.ImagePath" alt="post-thumb">
-						</div>
-						<!-- Post Excerpt -->
-						<p>@(item.Content.ToString().Length > 40 ? item.Content.ToString().Substring(0, 40) + "..." : item.Content)</p>
-						<!-- Reading More -->
-						<div class="post-continue-reading-share mt-30">
-							<div class="post-continue-btn">
-								<a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" class="font-pt">Daha Fazlası... <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-6">
+                    <!-- Gazette Welcome Post -->
+                    <div class="gazette-welcome-post">
+                        <!-- Post Tag -->
+                        <div class="gazette-post-tag">
+                            <a href="/Category/Index/@item.Category.Id">@item.Category.Name</a>
+                        </div>
+                        <h2 class="font-pt"><a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id">@item.Title</a></h2>
+                        <p class="gazette-post-date">@String.Format("{0: dd MMMM yyyy}", item.CreatedAt)</p>
+                        <!-- Post Thumbnail -->
+                        <div class="blog-post-thumbnail my-5 thumbnail-size">
+                            <img src="/Img/@item.ImagePath" alt="post-thumb">
+                        </div>
+                        <!-- Post Excerpt -->
+                        <p>@(item.Content.ToString().Length > 40 ? item.Content.ToString().Substring(0, 40) + "..." : item.Content)</p>
+                        <!-- Reading More -->
+                        <div class="post-continue-reading-share mt-30">
+                            <div class="post-continue-btn">
+                                <a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" class="font-pt">Daha Fazlası... <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-			}
-		</div>
-	</div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="gazette-pagination-area">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions() { UlElementClasses = new[] { "pagination" }, LiElementClasses = new[] { "page-item" }, PageClasses = new[] { "page-link" } })
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-@*<div class="row">
-	<div class="col-12">
-		<div class="gazette-pagination-area">
-			<nav aria-label="Page navigation example">
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">4</a></li>
-					<li class="page-item"><a class="page-link" href="#">5</a></li>
-					<li class="page-item">
-						<a class="page-link" href="#" aria-label="Next"><i class="fa fa-angle-right"></i></a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>*@
+
+
 

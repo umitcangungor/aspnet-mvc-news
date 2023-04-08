@@ -2,6 +2,7 @@
 using App.Service.Abstract;
 using App.Web.Mvc.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace App.Web.Mvc.Controllers
 {
@@ -16,10 +17,18 @@ namespace App.Web.Mvc.Controllers
 			_categoryService = categoryService;
 		}
 
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index(int? page)
         {
-			var model = await _service.GetAllNewsByCategoriesAsync();
-			return View(model);
+            int pageSize = 4;
+            int pageIndex = 1;
+
+            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+
+			var newsList = await _service.GetAllNewsByCategoriesToPagedList();
+
+            IPagedList<News> newsPagedList = new PagedList<News>(newsList, pageIndex, pageSize);
+
+            return View(newsPagedList);
 		}
 
 		public async Task<IActionResult> Search(string q)

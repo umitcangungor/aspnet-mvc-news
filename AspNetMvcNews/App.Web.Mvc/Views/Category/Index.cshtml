@@ -1,6 +1,6 @@
-﻿@model Category
+﻿@model HomePageViewModel
 @{
-	ViewData["Title"] = Model.Name;
+	ViewData["Title"] = Model.Category.Name;
 }
 
 <!-- Breadcumb Area Start -->
@@ -11,15 +11,27 @@
 				<div class="breacumb-content d-flex align-items-center justify-content-between">
 					<!-- Post Tag -->
 					<div class="gazette-post-tag">
-						<a asp-controller="News" asp-action="Detail" asp-route-id="@Model.Id">@Model.Name</a>
+						<a asp-controller="News" asp-action="Detail" asp-route-id="@Model.Category.Id">@Model.Category.Name</a>
 					</div>
-					<p class="editorial-post-date text-dark mb-0">@String.Format("{0: dd MMMM yyyy}", Model.CreatedAt)</p>
+					<p class="editorial-post-date text-dark mb-0">@String.Format("{0: dd MMMM yyyy}", DateTime.Now)</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- Breadcumb Area End -->
+@if (Model.PagedNews == null || Model.PagedNews.Count == 0)
+{
+	<div class="container d-flex justify-content-center my-5">
+		<div class="row">
+			<h3><a href="#" class="font-pt mb-2">Aradığınız kategoride haber bulunamadı!</a></h3>
+		</div>
+	</div>
+}
+else
+{
+	<partial name="_CategorySlider" model="Model.NewsList" />
 
-<partial name="_News" model="Model.News" />
+	<partial name="_News" model="Model.PagedNews" />
+}
 
