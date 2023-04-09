@@ -1,0 +1,72 @@
+﻿@model EditRoleViewModel
+@{
+	ViewData["Title"] = "Rol Düzenle";
+}
+
+<form asp-action="EditRole" method="post">
+	<input asp-for="@Model.Id" hidden />
+
+	<div class="border p-3 bg-white mt-5">
+		<div class="form-group row">
+			<h2 class="text-info pl-3">Rol Düzenle</h2>
+		</div>
+		<div class="row">
+			<div class="col-8">
+				<div class="form-group row py-2 ">
+					<div class="col-4">
+						<label asp-for="Id"></label>
+					</div>
+					<div class="col-8">
+						<input asp-for="Id" readonly class="form-control" />
+					</div>
+				</div>
+				<div class="form-group row py-2 ">
+					<div class="col-4">
+						<label asp-for="RoleName"></label>
+					</div>
+					<div class="col-8">
+						<input asp-for="RoleName" class="form-control" autocomplete="off" />
+						<span asp-validation-for="RoleName" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="form-group row py-2 ">
+					<div class="col-8 offset-4 row">
+						<div class="col">
+							<input type="submit" class="btn btn-info w-100" value="Kaydet" />
+						</div>
+						<div class="col">
+							<a asp-action="Index" class="btn btn-success w-100">Geri Dön</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card mt-5">
+		<div class="card-header">
+			<h3>Bu roldeki kullanıcılar</h3>
+		</div>
+		<div class="card-body">
+			@if (Model.Users.Any())
+			{
+				foreach (var user in Model.Users)
+				{
+					<ul>
+						<li>@user</li>
+					</ul>
+				}
+			}
+			else
+			{
+				<h5 class="card-title">Şu anda bu role sahip bir kullanıcı bulunmamaktadır.</h5>
+			}
+		</div>
+		<div class="card-footer">
+			<a asp-controller="Role" asp-action="EditUsersInRole"
+			   asp-route-roleId="@Model.Id" class="btn btn-primary">
+				Kullanıcı ekle veya çıkar
+			</a>
+		</div>
+	</div>
+</form>
+

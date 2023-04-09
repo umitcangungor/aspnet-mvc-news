@@ -1,0 +1,75 @@
+﻿@model IEnumerable<App.Data.AppRole>
+@{
+    ViewData["Title"] = "Rol Yönetimi";
+}
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-primary">Rol Listesi </h2>
+    </div>
+</div>
+<div class="p-4 border rounded">
+    <div class="row mb-3">
+        <div class="col-6 text-left">
+            <a asp-action="CreateRole" asp-controller="Role" class="btn btn-primary">Yeni Rol Ekle</a>
+        </div>
+    </div>
+    @if (Model.Any())
+    {
+        <table class="table table-striped border">
+            <tr class="table-secondary">
+                <th>
+                    ID
+                </th>
+                <th>
+                    İsim
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        <div class="text-center">
+                            <form asp-action="DeleteRole" asp-route-id="@item.Id">
+                                <a asp-action="EditRole" asp-route-id="@item.Id" class="btn btn-info text-white" style="cursor:pointer">
+                                    Düzenle
+                                </a>
+
+                                <button type="submit"
+                                        class="btn btn-danger" onclick="return confirm('Bu rolü silmek istediğinizden emin misiniz?')">
+                                    Sil
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-header">
+                Henüz bir kullanıcı rolü oluşturulmadı.
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Kullanıcı rolü oluşturmak için aşağıdaki butonu kullanın.
+                </h5>
+                <br />
+                <a class="btn btn-primary" style="width:auto"
+               asp-controller="Role" asp-action="CreateRole">
+                    Yeni Kullanıcı Rolü Ekle
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
