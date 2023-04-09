@@ -25,6 +25,11 @@ namespace App.Data.Concrete
         {
             return await context.News.Where(n => n.CategoryId == categoryId).Include(n => n.Category).OrderByDescending(n => n.CreatedAt).ToPagedListAsync(pageIndex, pageSize);
         }
+        public async Task<IPagedList<News>> GetAllNewsBySearchToPagedList(int categoryId, int pageIndex, int pageSize)
+        {
+            var query = context.News.Where(n => n.CategoryId == categoryId).Include(n => n.Category).OrderByDescending(n => n.CreatedAt);
+            return await query.ToPagedListAsync(pageIndex, pageSize);
+        }
 
         public async Task<News> GetNewsByCategoriesAsync(int id)
         {

@@ -224,7 +224,7 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
                 catch (DbUpdateException) // DbUpdateException database'e bir şey kaydederken ortaya çıkan sorunları yakalayıp hata fırlatıyor.
                 {
                     ViewBag.ErrorTitle = $"{role.Name} rolü kullanımdadır.";
-                    ViewBag.ErrorMessage = $"{role.Name} rolünde kullanıcılar bulunduğu için silinememektedir. Bu rolü silmek istiyorsanız, bu roldeki kullanıcıları kaldırın ve ondan sonra tekrar deneyin.";
+                    ViewBag.ErrorMessage = $"{role.Name} rolünde kullanıcılar bulunduğu için silinememektedir. Bu rolü silmek istiyorsanız, bu roldeki kullanıcıları kaldırın ve sonra tekrar deneyin.";
                     return View("CustomError");
                 }
             }
