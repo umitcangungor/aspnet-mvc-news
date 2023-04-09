@@ -35,6 +35,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(opt =>
 	//Password
 	opt.Password.RequiredLength = 5;
 	opt.Password.RequireLowercase = true;
+	opt.Password.RequireNonAlphanumeric = false;
 
 	//Lockout
 	opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
