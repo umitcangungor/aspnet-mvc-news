@@ -30,7 +30,7 @@ namespace App.Web.Mvc.Utils
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("sedat.kurtuldu16@gmail.com"),
+                From = new EmailAddress("csdsedat99@hotmail.com"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message

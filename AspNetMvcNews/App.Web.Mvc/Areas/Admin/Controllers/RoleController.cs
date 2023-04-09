@@ -1,12 +1,13 @@
 ﻿using App.Data;
 using App.Web.Mvc.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Roles = "Admin, Moderator")]
     public class RoleController : Controller
     {
         private readonly UserManager<AppUser> _userManager;

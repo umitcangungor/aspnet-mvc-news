@@ -1,11 +1,12 @@
 ﻿using App.Data.Entities;
 using App.Service.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Roles = "Admin, Moderator")]
     public class ContactsController : Controller
     {
         private readonly IService<Contact> _service;

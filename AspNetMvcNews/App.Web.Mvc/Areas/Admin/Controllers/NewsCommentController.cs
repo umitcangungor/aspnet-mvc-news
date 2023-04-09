@@ -2,12 +2,13 @@
 using App.Service.Abstract;
 using App.Service.Concrete;
 using App.Web.Mvc.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Roles = "Admin, Moderator")]
     public class NewsCommentController : Controller
     {
         private readonly IService<NewsComment> _comment;
@@ -17,35 +18,78 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
             _comment = comment;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var model = await _comment.GetAllAsync();
-            return View(model);
+            var list = _comment.GetAll();
+            return View(list);
         }
-
-        public async Task<IActionResult> Create()
+        // GET: NewsCommentController/Create
+        public ActionResult Create()
         {
             return View();
         }
 
+        // POST: NewsCommentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(NewsComment comment)
+        public ActionResult Create(NewsComment newsComment)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    await _comment.AddAsync(comment);
-                    await _comment.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-                catch
-                {
-                    ModelState.AddModelError("", "Hata Oluştu!");
-                }
+                _comment.Add(newsComment);
+                _comment.SaveChanges();
+                return RedirectToAction(nameof(Index));
             }
-            return View(comment);
+            catch
+            {
+                return View();
+            }
+        }
+        // GET: ContactsController/Edit/5
+        public ActionResult Edit(int id)
+        {
+            var model = _comment.Find(id);
+            return View(model);
+        }
+
+        // POST: NewsCommentController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, NewsComment newsComment)
+        {
+            try
+            {
+                _comment.Update(newsComment);
+                _comment.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        // GET: NewsCommentController/Delete/5
+        public ActionResult Delete(int id)
+        {
+            var model = _comment.Find(id);
+            return View(model);
+        }
+
+        // POST: NewsCommentController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, NewsComment newsComment)
+        {
+            try
+            {
+                _comment.Delete(newsComment);
+                _comment.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

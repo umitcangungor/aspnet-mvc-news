@@ -1,11 +1,12 @@
 ﻿using App.Data.Entities;
 using App.Service.Abstract;
 using App.Web.Mvc.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
 {
-	[Area("Admin")]
+	[Area("Admin"), Authorize(Roles = "Admin, Moderator")]
 	public class MainController : Controller
 	{
 		private readonly IService<News> _service;

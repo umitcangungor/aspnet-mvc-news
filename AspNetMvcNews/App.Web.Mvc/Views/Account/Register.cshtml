@@ -1,7 +1,7 @@
-﻿@model LoginViewModel
+﻿@model RegisterViewModel
 @{
-	Layout = null;
-	ViewData["Title"] = "Giriş Yap";
+    Layout = null;
+    ViewData["Title"] = "Giriş Yap";
 }
 
 <!doctype html>
@@ -22,7 +22,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="/login-form-09/css/style.css">
 
-    <title>Giriş Yap</title>
+    <title>Üye Ol</title>
 </head>
 <body>
 
@@ -39,13 +39,19 @@
                         <div class="col-md-12">
                             <div class="form-block">
                                 <div class="mb-4">
-                                    <h3>Giriş Yap</h3>
-@*                                    <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>*@
+                                    <h3>Kaydol</h3>
+                                    @*<p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>*@
                                 </div>
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <form asp-controller="Account" asp-action="Login" method="post" asp-route-returnurl="@Model.ReturnUrl">
+                                <form asp-controller="Account" asp-action="Register" method="post" asp-route-returnurl="@Model.ReturnUrl">
                                     <div class="form-group first">
-                                        <label asp-for="Email" placeholder="E-Posta"></label>
+                                        <label asp-for="UserName">Kullanıcı Adı</label>
+                                        <input asp-for="UserName" type="text" class="form-control">
+                                        <span asp-validation-for="UserName" class="text-danger"></span>
+
+                                    </div>
+                                    <div class="form-group first">
+                                        <label asp-for="Email">E-Posta</label>
                                         <input asp-for="Email" type="email" class="form-control">
                                         <span asp-validation-for="Email" class="text-danger"></span>
 
@@ -54,28 +60,23 @@
                                         <label asp-for="Password">Şifre</label>
                                         <input asp-for="Password" type="password" class="form-control">
                                         <span asp-validation-for="Password" class="text-danger"></span>
-
                                     </div>
-
-                                    <div class="d-flex mb-5 align-items-center">
-                                        <label class="control control--checkbox mb-0">
-                                            <label asp-for="RememberMe" class="caption">Beni Hatırla</label>
-                                            <input asp-for="RememberMe" type="checkbox" checked="checked" />
-                                            <div class="control__indicator"></div>
-                                        </label>
-                                        <span class="ml-auto"><a asp-controller="Account" asp-action="ForgotPassword" class="forgot-pass">Şifremi Unuttum</a></span>
+                                    <div class="form-group last mb-4">
+                                        <label asp-for="ConfirmPassword">Şifre Tekrar</label>
+                                        <input asp-for="ConfirmPassword" type="password" class="form-control">
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                     </div>
 
                                     <button type="submit" class="btn btn-pill text-white btn-block btn-primary">Giriş Yap</button>
 
-                                    <span class="d-block text-center my-4 text-muted"><a asp-controller="Account" asp-action="Register" class="forgot-pass">Hesabın yok mu? Kaydol!</a></span>
+                                    <span class="d-block text-center my-4 text-muted"><a asp-controller="Account" asp-action="Login" class="forgot-pass">Hesabın var mı? Giriş Yap!</a></span>
 
                                     <div class="social-login text-center">
                                         <a href="#" class="facebook">
                                             <span class="icon-facebook mr-3"></span>
                                         </a>
-@*                                        <a href="#" class="twitter">
-                                            <span class="icon-twitter mr-3"></span>
+                                        @*                                        <a href="#" class="twitter">
+                                        <span class="icon-twitter mr-3"></span>
                                         </a>*@
                                         <a href="#" class="google">
                                             <span class="icon-google mr-3"></span>

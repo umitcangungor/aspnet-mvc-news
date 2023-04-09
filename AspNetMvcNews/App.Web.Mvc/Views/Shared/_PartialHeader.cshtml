@@ -1,4 +1,5 @@
-﻿
+﻿@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 <header class="header-area">
 	<div class="top-header">
 		<div class="container h-100">
@@ -23,8 +24,19 @@
 				<div class="col-12 col-md-6">
 					<div class="stock-news-area">
 						<div id="stockNewsTicker" class="ticker d-flex justify-content-end" style="height: 53px;">
+							@if (SignInManager.IsSignedIn(User))
+							{
+								<a href="#" class="nav-link" style="color: white;">Merhaba @UserManager.GetUserName(User) <span class="sr-only">(current)</span></a>
+								<form  method="post" class="form-inline" asp-controller="Account" asp-action="LogOut">
+									<input type="submit" value="Çıkış Yap" class="nav-link btn btn-danger" />
+								</form>
+								
+							}
+							else
+							{
 							<a asp-controller="Account" asp-action="Login" class="nav-link" style="color: white;">Giriş Yap <span class="sr-only">(current)</span></a>
 							<a asp-controller="Account" asp-action="Register" class="nav-link" style="color: white;">Üye Ol <span class="sr-only">(current)</span></a>
+							}
 						</div>
 					</div>
 				</div>
