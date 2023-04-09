@@ -27,14 +27,7 @@
 							<img src="/Img/@latestNews.ImagePath" alt="post-thumb">
 						</div>
 						<!-- Post Excerpt -->
-						@if (latestNews.IsHome && latestNews.Content.ToString().Length < 40)
-						{
-							<p>@latestNews.Content</p>
-						}
-						else
-						{
-							<p>@(latestNews.Content.ToString().Length > 40 ? latestNews.Content.ToString().Substring(0, 594) + "..." : latestNews.Content)</p>
-						}
+						<p>@(latestNews.Content.ToString().Length > 594 ? latestNews.Content.ToString().Substring(0, 594) + "..." : latestNews.Content)</p>
 						<!-- Reading More -->
 						<div class="post-continue-reading-share d-sm-flex align-items-center justify-content-between mt-30">
 							<div class="post-continue-btn">
@@ -97,7 +90,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="gazette-todays-post section_padding_100_50">
+			@*<div class="gazette-todays-post section_padding_100_50">
 				<div class="gazette-heading">
 					<h4>today’s most popular</h4>
 				</div>
@@ -133,7 +126,7 @@
 						<p>Aliquam quis convallis enim. Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.</p>
 					</div>
 				</div>
-			</div>
+			</div>*@
 		</div>
 	</div>
 	<!-- Main Content Area End -->

@@ -1,7 +1,7 @@
 ﻿@model RegisterViewModel
 @{
     Layout = null;
-    ViewData["Title"] = "Giriş Yap";
+    ViewData["Title"] = "Kaydol";
 }
 
 <!doctype html>
@@ -42,7 +42,7 @@
                                     <h3>Kaydol</h3>
                                     @*<p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>*@
                                 </div>
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div asp-validation-summary="All" class="text-danger"></div>
                                 <form asp-controller="Account" asp-action="Register" method="post" asp-route-returnurl="@Model.ReturnUrl">
                                     <div class="form-group first">
                                         <label asp-for="UserName" class="sr-only">Kullanıcı Adı</label>
@@ -71,17 +71,17 @@
 
                                     <span class="d-block text-center my-4 text-muted"><a asp-controller="Account" asp-action="Login" class="forgot-pass">Hesabın var mı? Giriş Yap!</a></span>
 
-                                    <div class="social-login text-center">
+                                   @* <div class="social-login text-center">
                                         <a href="#" class="facebook">
                                             <span class="icon-facebook mr-3"></span>
                                         </a>
-                                        @*                                        <a href="#" class="twitter">
+                                                                                <a href="#" class="twitter">
                                         <span class="icon-twitter mr-3"></span>
-                                        </a>*@
+                                        </a>
                                         <a href="#" class="google">
                                             <span class="icon-google mr-3"></span>
                                         </a>
-                                    </div>
+                                    </div>*@
                                 </form>
                             </div>
                         </div>

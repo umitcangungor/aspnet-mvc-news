@@ -5,7 +5,7 @@ namespace App.Data.Entities
     public class News : IAuiditEntity
     {
 		public int Id { get; set; }
-		[Required(ErrorMessage = "{0} alanı boş geçilemez!"), StringLength(50), Display(Name = "Haber Başlığı")]
+		[Required(ErrorMessage = "{0} alanı boş geçilemez!"), StringLength(100), Display(Name = "Haber Başlığı")]
 		public string Title { get; set; }
 		[Display(Name = "Haber Açıklaması")]
 		public string? Content { get; set; }

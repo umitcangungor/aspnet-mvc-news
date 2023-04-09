@@ -49,7 +49,7 @@
 								@*
 						<a asp-action="ManageClaims" asp-controller="User" asp-route-userId="@user.Id" class="btn btn-info text-white">Haklar</a>
 						*@
-								<button type="submit" onclick="return confirm('Bu kullanıcıyı silmek istediğinizden emin misiniz?')" class="btn btn-danger">Sil</button>
+								<button type="submit" class="btn btn-danger btn-delete">Sil</button>
 							</form>
 						</div>
 					</td>
@@ -76,5 +76,30 @@
 		</div>
 	}
 </div>
+@section Scripts {
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.btn-delete').click(function (e) {
+				e.preventDefault();
+				swal({
+					title: "Silmek istediğinize emin misiniz?",
+					text: "Bu işlem geri alınamaz!",
+					icon: "warning",
+					buttons: {
+						cancel: "İptal",
+						confirm: "Tamam"
+					},
+					dangerMode: true,
+				})
+					.then((willDelete) => {
+						if (willDelete) {
+							$(this).closest('form').submit();
+						}
+					});
+			});
+		});
 
+	</script>
+}
 

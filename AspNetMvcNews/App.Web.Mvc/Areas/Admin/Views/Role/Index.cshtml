@@ -43,7 +43,7 @@
                                 </a>
 
                                 <button type="submit"
-                                        class="btn btn-danger" onclick="return confirm('Bu rolü silmek istediğinizden emin misiniz?')">
+                                        class="btn btn-danger btn-delete">
                                     Sil
                                 </button>
                             </form>
@@ -72,4 +72,31 @@
         </div>
     }
 </div>
+
+@section Scripts {
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.btn-delete').click(function (e) {
+                e.preventDefault();
+                swal({
+                    title: "Silmek istediğinize emin misiniz?",
+                    text: "Bu işlem geri alınamaz!",
+                    icon: "warning",
+                    buttons: {
+                        cancel: "İptal",
+                        confirm: "Tamam"
+                    },
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $(this).closest('form').submit();
+                        }
+                    });
+            });
+        });
+
+    </script>
+}
 

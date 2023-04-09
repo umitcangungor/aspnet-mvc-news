@@ -4,6 +4,7 @@ using App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230409154702_NewsTitleStringLength")]
+    partial class NewsTitleStringLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,14 +70,14 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 4, 9, 18, 48, 58, 423, DateTimeKind.Local).AddTicks(9180),
-                            DeletedAt = new DateTime(2023, 4, 9, 18, 48, 58, 423, DateTimeKind.Local).AddTicks(9196),
+                            CreatedAt = new DateTime(2023, 4, 9, 18, 47, 2, 237, DateTimeKind.Local).AddTicks(5156),
+                            DeletedAt = new DateTime(2023, 4, 9, 18, 47, 2, 237, DateTimeKind.Local).AddTicks(5171),
                             IsActive = false,
                             IsTopMenu = false,
                             Name = "Son Dakika",
                             OrderNo = 0,
                             ParentId = 0,
-                            UpdatedAt = new DateTime(2023, 4, 9, 18, 48, 58, 423, DateTimeKind.Local).AddTicks(9195)
+                            UpdatedAt = new DateTime(2023, 4, 9, 18, 47, 2, 237, DateTimeKind.Local).AddTicks(5170)
                         });
                 });
 
@@ -156,8 +159,7 @@ namespace App.Data.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -247,12 +249,12 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 4, 9, 18, 48, 58, 423, DateTimeKind.Local).AddTicks(9595),
-                            DeletedAt = new DateTime(2023, 4, 9, 18, 48, 58, 423, DateTimeKind.Local).AddTicks(9597),
+                            CreatedAt = new DateTime(2023, 4, 9, 18, 47, 2, 237, DateTimeKind.Local).AddTicks(5715),
+                            DeletedAt = new DateTime(2023, 4, 9, 18, 47, 2, 237, DateTimeKind.Local).AddTicks(5719),
                             Email = "Admin@admin.com",
                             Name = "Admin",
                             Password = "1234",
-                            UpdatedAt = new DateTime(2023, 4, 9, 18, 48, 58, 423, DateTimeKind.Local).AddTicks(9597)
+                            UpdatedAt = new DateTime(2023, 4, 9, 18, 47, 2, 237, DateTimeKind.Local).AddTicks(5718)
                         });
                 });
 
