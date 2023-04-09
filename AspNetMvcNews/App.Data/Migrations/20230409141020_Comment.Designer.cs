@@ -4,6 +4,7 @@ using App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230409141020_Comment")]
+    partial class Comment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,14 +70,14 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 4, 9, 17, 32, 59, 774, DateTimeKind.Local).AddTicks(317),
-                            DeletedAt = new DateTime(2023, 4, 9, 17, 32, 59, 774, DateTimeKind.Local).AddTicks(330),
+                            CreatedAt = new DateTime(2023, 4, 9, 17, 10, 20, 60, DateTimeKind.Local).AddTicks(7887),
+                            DeletedAt = new DateTime(2023, 4, 9, 17, 10, 20, 60, DateTimeKind.Local).AddTicks(7906),
                             IsActive = false,
                             IsTopMenu = false,
                             Name = "Son Dakika",
                             OrderNo = 0,
                             ParentId = 0,
-                            UpdatedAt = new DateTime(2023, 4, 9, 17, 32, 59, 774, DateTimeKind.Local).AddTicks(329)
+                            UpdatedAt = new DateTime(2023, 4, 9, 17, 10, 20, 60, DateTimeKind.Local).AddTicks(7905)
                         });
                 });
 
@@ -169,6 +172,69 @@ namespace App.Data.Migrations
                     b.ToTable("News");
                 });
 
+            modelBuilder.Entity("App.Data.Entities.NewsComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NewsComments");
+                });
+
+            modelBuilder.Entity("App.Data.Entities.Setting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Settings");
+                });
+
             modelBuilder.Entity("App.Data.Entities.Slider", b =>
                 {
                     b.Property<int>("Id")
@@ -247,12 +313,12 @@ namespace App.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 4, 9, 17, 32, 59, 774, DateTimeKind.Local).AddTicks(601),
-                            DeletedAt = new DateTime(2023, 4, 9, 17, 32, 59, 774, DateTimeKind.Local).AddTicks(603),
+                            CreatedAt = new DateTime(2023, 4, 9, 17, 10, 20, 60, DateTimeKind.Local).AddTicks(8324),
+                            DeletedAt = new DateTime(2023, 4, 9, 17, 10, 20, 60, DateTimeKind.Local).AddTicks(8326),
                             Email = "Admin@admin.com",
                             Name = "Admin",
                             Password = "1234",
-                            UpdatedAt = new DateTime(2023, 4, 9, 17, 32, 59, 774, DateTimeKind.Local).AddTicks(602)
+                            UpdatedAt = new DateTime(2023, 4, 9, 17, 10, 20, 60, DateTimeKind.Local).AddTicks(8326)
                         });
                 });
 

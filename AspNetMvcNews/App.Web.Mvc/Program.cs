@@ -3,6 +3,7 @@ using App.Data.Abstract;
 using App.Data.Concrete;
 using App.Service.Abstract;
 using App.Service.Concrete;
+using App.Web.Mvc.Models.Validators;
 using App.Web.Mvc.Utils;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -39,7 +40,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(opt =>
 	opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
 	opt.Lockout.MaxFailedAccessAttempts = 5;
 
-}).AddEntityFrameworkStores<ApplicationIdentityDbContext>().AddDefaultTokenProviders();
+}).AddEntityFrameworkStores<ApplicationIdentityDbContext>().AddUserValidator<UserValidator>().AddPasswordValidator<PasswordValidator>().AddErrorDescriber<ErrorDescriber>().AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
 {

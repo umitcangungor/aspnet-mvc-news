@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Error";
+}
+
+@if (ViewBag.ErrorTitle == null)
+{
+    <h3>
+        İsteğiniz işlenirken bir hata oluştu.
+        Destek ekibi bilgilendirildi ve düzeltme üzerinde çalışıyoruz.
+    </h3>
+    <h5>Lütfen sedat.kurtuldu16@gmail.com üzerinden bizimle iletişime geçin!</h5>
+}
+else
+{
+    <h1 class="text-danger">@ViewBag.ErrorTitle</h1>
+    <h6 class="text-danger">@ViewBag.ErrorMessage</h6>
+}

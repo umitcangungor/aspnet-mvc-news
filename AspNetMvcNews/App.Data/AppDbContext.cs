@@ -15,8 +15,6 @@ namespace App.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<News> News { get; set; }
-        public DbSet<NewsComment> NewsComments { get; set; }
-        public DbSet<Setting> Settings { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Contact> Contacts { get; set; }
