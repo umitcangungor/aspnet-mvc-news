@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Data.Common;
 using System.Security.Claims;
 
 namespace App.Web.Mvc.Areas.Admin.Controllers
@@ -128,19 +129,28 @@ namespace App.Web.Mvc.Areas.Admin.Controllers
             }
             else
             {
-                var result = await _userManager.DeleteAsync(user);
-
-                if (result.Succeeded)
+                try
                 {
-                    return RedirectToAction("Index");
-                }
+                    var result = await _userManager.DeleteAsync(user);
 
-                foreach (var error in result.Errors)
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                    return View("Index");
+                }
+                catch (Exception)
                 {
-                    ModelState.AddModelError("", error.Description);
+                    ViewBag.ErrorTitle = $"{user.UserName} kullanıcısı silinememektedir!";
+                    ViewBag.ErrorMessage = $"{user.UserName} kullanıcısı bir role sahip olduğu için silinememektedir. Bu kullanıcıyı silmek istiyorsanız, kullanıcının rolünü kaldırın ve sonra tekrar deneyin.";
+                    return View("UsersCustomError");
                 }
-
-                return View("Index");
+                
             }
         }
         [HttpGet]

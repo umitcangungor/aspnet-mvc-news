@@ -38,13 +38,11 @@ namespace App.Web.Mvc.Controllers
 
             pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
 
+            q = q.Trim();
             var newsList = await _service.GetAllNewsByCategoriesToPagedList();
             var filteredNewsList = newsList.Where(p => p.IsActive && p.Title.ToUpper().Contains(q.ToUpper()));
             IPagedList<News> newsPagedList = new PagedList<News>(filteredNewsList, pageIndex, pageSize);
 
-
-            q = q.Trim();
-			//var news = await _service.GetAllAsync(p => p.IsActive && p.Title.ToUpper().Contains(q.ToUpper()));
 			var model = new SearchViewModel()
 			{
 				NewsList = newsPagedList,
